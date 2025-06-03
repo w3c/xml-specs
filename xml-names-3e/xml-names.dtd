@@ -1,0 +1,33 @@
+<!-- Modifications to xmlspec.dtd for the namespaces spec -->
+
+<!-- we extend the note class -->
+
+<!ENTITY % local.note.class "|nscnote">
+
+<!-- we need to extend the content models of these elements, and the
+     only way to do it is to replace the definitions completely -->
+
+<!ENTITY % prod.element "IGNORE">
+<!ELEMENT prod (lhs, (rhs, (com|wfc|vc|nsc|constraint)*)+)>
+
+<!ENTITY % com.element "IGNORE">
+<!ELEMENT com (#PCDATA|loc|xnt|bibref)*>
+
+<!-- include the plain version -->
+
+<!ENTITY % plainspec PUBLIC
+       "-//W3C//DTD Specification V2.7//EN"
+       "http://www.w3.org/2002/xmlspec/dtd/2.7/xmlspec.dtd">
+%plainspec;
+
+<!-- extra namespace-specific elements -->
+
+<!ELEMENT nsc EMPTY>
+<!ATTLIST nsc
+        %def-req.att;
+        %common.att;>
+
+<!ELEMENT nscnote (head, (%obj.mix;)+)>
+<!ATTLIST nscnote
+        %common-idreq.att;>
+
